@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анна и Михаил | 06.06.2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        body {
+            background-color: #fffaf3;
+            color: #5d4037;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Шапка */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .names {
+            font-size: 5.5vw;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .wedding-date {
+            font-size: 2.5vw;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        /* Основные разделы */
+        section {
+            padding: 80px 10%;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 3px;
+            background: #e8c4b8;
+            bottom: -15px;
+            left: 10%;
+        }
+        
+        /* Таймер */
+        #countdown {
+            background: #f9f1e8;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+            margin: 40px auto;
+            border-radius: 15px;
+            max-width: 900px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        }
+        
+        .countdown-box {
+            min-width: 150px;
+        }
+        
+        .countdown-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #c69c6d;
+        }
+        
+        .countdown-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Информация о месте */
+        .location-info {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+        }
+        
+        /* Карта */
+        #map {
+            height: 400px;
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e8c4b8;
+        }
+        
+        /* Программа */
+        .timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #e8c4b8;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            text-align: left;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-time {
+            font-weight: bold;
+            color: #c69c6d;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Контакты */
+        .contact-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .contact-item {
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: #c69c6d;
+        }
+        
+        /* Подвал */
+        footer {
+            background: #5d4037;
+            color: #f9f1e8;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+        
+        .heart {
+            color: #e8c4b8;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .names {
+                font-size: 3rem;
+            }
+            
+            .wedding-date {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            #countdown {
+                gap: 15px;
+            }
+            
+            .countdown-box {
+                min-width: 100px;
+            }
+            
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+            
+            .timeline:before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с именами и датой -->
+    <header>
+        <h1 class="names">Анна & Михаил</h1>
+        <h2 class="wedding-date">06.06.2026 | Загородный клуб "Пески"</h2>
+    </header>
+    
+    <!-- Обратный отсчет -->
+    <section>
+        <h2 class="section-title">До торжества осталось</h2>
+        <div id="countdown">
+            <div class="countdown-box">
+                <div class="countdown-number" id="days">364</div>
+                <div class="countdown-label">дней</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="hours">23</div>
+                <div class="countdown-label">часов</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="minutes">59</div>
+                <div class="countdown-label">минут</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="seconds">59</div>
+                <div class="countdown-label">секунд</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Место проведения -->
+    <section style="background: #f9f1e8;">
+        <h2 class="section-title">Место проведения</h2>
+        <p class="location-info">
+            Мы будем рады видеть вас на нашем торжестве<br>
+            <strong>06 июня 2026 года в 15:00</strong><br>
+            в загородном клубе "Пески"
+        </p>
+        
+        <!-- Карта -->
+        <div id="map"></div>
+    </section>
+    
+    <!-- Программа -->
+    <section>
+        <h2 class="section-title">Программа дня</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">14:30</div>
+                    <h3>Сбор гостей</h3>
+                    <p>Приветственный фуршет</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">15:00</div>
+                    <h3>Церемония</h3>
+                    <p>Торжественное бракосочетание</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">16:00</div>
+                    <h3>Фотосессия</h3>
+                    <p>Свадебная прогулка с фотографом</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">18:00</div>
+                    <h3>Банкет</h3>
+                    <p>Торжественный ужин и празднование</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Контакты -->
+    <section style="background: #f9f1e8;">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contact-box">
+            <div class="contact-item">
+                <i class="contact-icon fas fa-user"></i>
+                <div>Анна: +7 (XXX) XXX-XX-XX</div>
+            </div>
+            <div class="contact-item">
+                <i class="contact-icon fas fa-user"></i>
+                <div>Михаил: +7 (XXX) XXX-XX-XX</div>
+            </div>
+            <div class="contact-item">
+                <i class="contact-icon fas fa-map-marker-alt"></i>
+                <div>Московская область, Истринский район, клуб "Пески"</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Подвал сайта -->
+    <footer>
+        <p>С любовью, Анна и Михаил</p>
+        <p>Ждём вас 06.06.2026! <i class="heart fas fa-heart"></i></p>
+    </footer>
+    
+    <!-- Скрипты -->
+    <script>
+        // Обратный отсчет
+        function updateCountdown() {
+            const weddingDate = new Date('June 06, 2026 15:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Инициализация карты (Яндекс Карты)
+        function initMap() {
+            // Координаты загородного клуба "Пески" (примерные)
+            const clubPeski = [55.914, 37.000];
+            
+            // Создание карты
+            const map = new ymaps.Map('map', {
+                center: clubPeski,
+                zoom: 14
+            });
+            
+            // Добавление метки
+            const placemark = new ymaps.Placemark(clubPeski, {
+                hintContent: 'Загородный клуб "Пески"',
+                balloonContent: 'Место проведения свадьбы<br>06.06.2026 в 15:00'
+            }, {
+                iconLayout: 'default#image',
+                iconImageHref: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+                iconImageSize: [40, 40],
+                iconImageOffset: [-20, -40]
+            });
+            
+            map.geoObjects.add(placemark);
+        }
+        
+        // Подключение API Яндекс.Карт
+        const script = document.createElement('script');
+        script.src = 'https://api-maps.yandex.ru/2.1/?apikey=ваш_api_ключ&lang=ru_RU';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+            ymaps.ready(initMap);
+        };
+    </script>
+</body>
+</html>
